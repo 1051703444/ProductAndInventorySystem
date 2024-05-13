@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lkcoffee.dao.InventoryDao">
+    <!--    int insertUser()
+    1.mapper接口和映射文件的namespace一致
+    2.mapper接口中方法名要与映射文件中的sql的id保持一致
+    -->
+    
+    <resultMap id="inventory" type="inventory">
+        <id property="inventoryId" column="inventory_id"></id>
+        <result property="productId" column="product_id"></result>
+        <result property="quantity" column="quantity"></result>
+    </resultMap>
+
+    <select id="selectInventory" resultMap="inventory">
+        select * from inventory
+    </select>
+
+    <select id="selectInventoryById" resultMap="inventory">
+        select * from inventory where inventory_id=#{inventory_id}
+    </select>
+
+    <insert id="insertSelective">
+        insert into inventory values(#{inventoryId},#{productId},#{quantity})
+    </insert>
+
+    <update id="updateInventory">
+        update inventory set inventory_id=#{inventoryId},product_id=#{productId},quantity={quantity}
+    </update>
+
+    <delete id="deleteById">
+        delete from inventory where inventory_id=#{id}
+    </delete>
+</mapper>

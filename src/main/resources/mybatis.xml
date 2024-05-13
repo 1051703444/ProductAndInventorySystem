@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--settings:控制mybatis全局行为-->
+    <settings>
+        <!--设置mybatis输出日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--类别名-->
+    <typeAliases>
+        <!--以包为单位，设置改包下所有的类型都拥有默认的别名，即类名且不区分大小写-->
+        <package name="com.lkcoffee.pojo"/>
+    </typeAliases>
+    <mappers>
+        <!--一个mapper标签指定一个文件的位置。
+            从类路径开始的路径信息。  target/clasess
+            指定sql映射文件的位置，使用包的方式，一次性全部把包中的映射文件全部读取到
+            -->
+<!--        此方式必须保证mapper接口和mapper映射文件必须在相同的包下-->
+        <package name="com.lkcoffee.dao"/>
+    </mappers>
+</configuration>

@@ -4,6 +4,7 @@ import com.lkcoffee.dao.ProductDao;
 import com.lkcoffee.pojo.Product;
 import com.lkcoffee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int insertSelective(Product product) {
+
         int num = productDao.insertSelective(product);
         return num;
     }
@@ -51,4 +53,6 @@ public class ProductServiceImpl implements ProductService {
     public int updateIsActive(Product product) {
         return productDao.updateIsActive(product);
     }
+
+
 }

@@ -15,6 +15,7 @@ import java.util.List;
  * @Package com.lkcoffee.service.impl
  * @date 2024/5/11 15:23
  */
+
 public class InvertoryServiceImpl implements InventoryService {
     InventoryDao inventoryDao;
 
@@ -41,6 +42,7 @@ public class InvertoryServiceImpl implements InventoryService {
     public int deleteById(Integer id) {
         return inventoryDao.deleteById(id);
     }
+
 
     @Override
     public int updateInventory(Inventory inventory) {

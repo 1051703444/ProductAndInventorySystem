@@ -11,16 +11,21 @@
     
     <resultMap id="inventory" type="inventory">
         <id property="inventoryId" column="inventory_id"></id>
-        <result property="productId" column="product_id"></result>
         <result property="quantity" column="quantity"></result>
+        <association property="product" >
+            <id property="productId" column="product.product_id"></id>
+            <result property="name" column="product.name"></result>
+            <result property="price" column="product.prive"></result>
+            <result property="isActive" column="product.isactive"></result>
+        </association>
     </resultMap>
 
     <select id="selectInventory" resultMap="inventory">
-        select * from inventory
+        select inventory_id,quantity,i.product_id,name,price,is_active from inventory i left join product p on p.product_id=i.product_id
     </select>
 
     <select id="selectInventoryById" resultMap="inventory">
-        select * from inventory where inventory_id=#{inventory_id}
+        select inventory_id,quantity,i.product_id,name,price,is_active from inventory i left join product p on p.product_id=i.product_id where inventory_id=#{inventory_id}
     </select>
 
     <insert id="insertSelective">
@@ -28,7 +33,13 @@
     </insert>
 
     <update id="updateInventory">
-        update inventory set inventory_id=#{inventoryId},product_id=#{productId},quantity={quantity}
+        update inventory
+        <set>
+            <if test="quantity!=null and quantity!=''">
+                quantity=#{quantity}
+            </if>
+        </set>
+        where inventory_id=#{inventoryId}
     </update>
 
     <delete id="deleteById">
